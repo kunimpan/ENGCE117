@@ -10,5 +10,4 @@ int main()
     printf("Get good grades in the midterm exam.\n");
     printf("Get good grades in the final exam.\n");
     printf("Get A grade.\n");
-    return 0;
 }
