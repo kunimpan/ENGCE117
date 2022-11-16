@@ -2,17 +2,16 @@
 
 int main()
 {
-    int a, b = 0, c = 0;
-    for (a = 0; a < 5; a++)
+    int Max, BigData = 0, Data = 0;
+    for (Max = 0; Max < 100; Max++)
     {
-        printf("Enter an integer:");
-        scanf("%d", &c);
-        printf("Enter an integer: %d", c);
-        if (c > b)
+        printf("Enter your number:");
+        scanf("%d", &Data);
+        if (Data > BigData)
         {
-            b = c;
+            BigData = Data;
         }
     };
-    printf("sum %d", b);
+    printf("Largest value : %d", BigData);
     return 0;
 }

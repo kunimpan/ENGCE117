@@ -1,21 +1,21 @@
 #include <stdio.h>
-
-
+#include <string.h>
 int main()
 {
-    char a;
-    int b;
-    printf("Shower\n");
-    printf("Get dressed\n");
-    printf("walk to the nearby market\n");
-    // if(){
-
-    // }
-    // printf(a);
-    // if(){
-        
-    // }
-    printf("จอดรถ\n");
-    printf("เข้าห้องเรียน\n");
+    char a[30];
+    printf("Shower.\n");
+    printf("Get dressed.\n");
+    printf("walk to the nearby market.\n");
+    printf("Closing market? : ");
+    scanf("%s", &a);
+    if (strcmp(a, "yes") == 0)
+    {
+        printf("go to another market.\n");
+        printf("shopping.\n");
+    }
+    else
+    {
+        printf("shopping.\n");
+    }
     return 0;
 }
