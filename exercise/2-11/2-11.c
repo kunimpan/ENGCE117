@@ -16,6 +16,6 @@ int main()
             printf("%d", series);
         }
         series = series * 10 + 9;
-    }
+    } // ลูปแสดงผลลัทธ์และบวกค่าตัวเลข
     printf("\nSum = %d", ans);
 }
