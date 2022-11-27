@@ -7,8 +7,7 @@ int main()
     scanf("%d", &n);
     printf("----\n");
     printf("Series = ");
-    for ( int i = 1 ; i <= n ; i++ )
-    {
+    for ( int i = 1 ; i <= n ; i++ ) {
         ans += series;
         if ( i <= n-1 ) {
             printf("%d + ", series);
