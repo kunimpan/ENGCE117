@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int *GetArr2D(int *row, int *col); // Protrotype
+int *GetArr2D( int *row, int *col ); // Protrotype
 
 int main() {
     int row, col, *arr;
@@ -9,7 +9,7 @@ int main() {
     return 0;
 }
 
-int *GetArr2D(int *row, int *col) {
+int *GetArr2D( int *row, int *col ) {
     int *arr;
     printf("Enter your rows : ");
     scanf("%d", row);
