@@ -1,4 +1,5 @@
 // โอภาสพันธ์ กลิ่นชิ่นจิต รหัส 65543206039-1 SEC 2
+// https://youtu.be/G-NP0sYvJz4
 
 #include <stdio.h>
 #include <string.h>
@@ -25,13 +26,13 @@ int main(){
     ShowAll( start );
     UpdateCarNode( &start , "Ford", "GTR", 15000000);
     ShowAll( start );
-    ShowBack ( &start );
     SwapNode ( &start, "Toyota", "Mazda");
     ShowAll( start );
+    ShowBack ( &start );
     return 0;
 }
 
-struct carNode *AddCarNode( struct carNode **walk, char newBrand[], int newPrice){
+struct carNode *AddCarNode( struct carNode **walk, char newBrand[], int newPrice ){
 
     while ( *walk != NULL ){
         walk = &(*walk)->next;
@@ -46,6 +47,7 @@ struct carNode *AddCarNode( struct carNode **walk, char newBrand[], int newPrice
 } // end function
 
 void ShowAll( struct carNode *walk ){
+
     while (walk != NULL)
     {
         printf("%s ", walk->brand);
@@ -87,7 +89,7 @@ void ShowBack ( struct carNode **walk ){
 
     *walk = preNode;
 
-    while ((*walk) != NULL) {
+    while ( (*walk) != NULL ) {
         printf("%s ", (*walk)->brand);
         printf("%d | ", (*walk)->price);
         (*walk) = (*walk)->next;
@@ -97,7 +99,7 @@ void ShowBack ( struct carNode **walk ){
 
 void SwapNode( struct carNode **walk, char brand1[], char brand2[] ){
    
-    if (strcmp(brand1, brand2) == 0){
+    if ( strcmp(brand1, brand2) == 0 ){
         printf("Same node \n");
         return;
     } //end if
@@ -123,14 +125,14 @@ void SwapNode( struct carNode **walk, char brand1[], char brand2[] ){
         } //end if
     }
 
-    if (prevBrand1 != NULL){
+    if ( prevBrand1 != NULL ){
         prevBrand1->next = currBrand2;
     }else{
         *walk = currBrand2;
     } //end if
         
  
-    if (prevBrand2 != NULL){
+    if ( prevBrand2 != NULL ){
         prevBrand2->next = currBrand1;
     }else{
         *walk = currBrand1;
