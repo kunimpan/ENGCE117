@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #define NULL 0
-
 struct studentNode {
     char name[ 20 ] ;
     int age ;
@@ -25,13 +24,8 @@ int main() {
     now = AddNode( &start, "two", 2, 'F', 3.22 ) ; ShowAll( start ) ;
     InsNode( now, "three", 3, 'M', 3.33 ) ; ShowAll( start ) ;
     InsNode( now, "four", 4, 'F', 3.44 ) ; ShowAll( start ) ;
-    // InsNode( now, "five", 5, 'F', 3.44 ) ; ShowAll( start ) ;
-    // InsNode( now, "six", 6, 'F', 3.44 ) ; ShowAll( start ) ;
     GoBack( &now ) ;
-    printf("%s", now->name);
-    printf("------------------------\n");
     DelNode( now ) ; ShowAll( start ) ; 
-    // printf("%s", now->name);
     DelNode( now ) ; ShowAll( start ) ; 
     DelNode( now ) ; ShowAll( start ) ; 
     return 0 ;
@@ -75,47 +69,20 @@ void GoBack( struct studentNode **walk ){
     (*walk) = (*walk)->back;
 }
 
-// void DelNode( struct studentNode *walk ){
-//     printf("node now input : %s | ", walk->name);
-//     printf("node next : %s | ", walk->back->name);
-//     struct studentNode *temp;
-//     walk->back->next = walk->next;
-
-//     if( walk->next != NULL ){
-//         walk->next->back = walk->back;
-//         temp = walk->next;
-//         // printf(" test ");
-//     }else{
-//         temp = walk->back;
-//         printf(" test 2 ");
-//     }
-//     delete walk;
-//     walk = temp;
-//     walk->back->next = walk;
-// }
-
 void DelNode( struct studentNode *walk ){
     printf("node now input : %s | ", walk->name);
-    // printf("node back : %s | ", walk->back->name);
-    // printf("node next : %s | ", walk->back->name);
     struct studentNode *temp;
     walk->back->next = walk->next;
 
     if( walk->next != NULL ){
         walk->next->back = walk->back;
         temp = walk->next;
-        // printf("move : %s | ", walk->next->back->name);
     }else{
         temp = walk->back;
-        printf(" test 2 ");
     }
     delete walk;
-    // printf("delete ? : %d | ", walk->sex);
     walk = temp;
     walk->back;
-    // walk = walk->back;
-    printf("move : %s | ", walk->name);
-    // walk->back->next = walk;
 }
 
 void ShowAll( struct studentNode *walk ) {
