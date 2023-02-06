@@ -3,101 +3,125 @@
 
 struct studentNode
 {
-    char name[20];
-    int age;
-    char sex;
-    float gpa;
+  char name[20];
+  int age;
+  char sex;
+  float gpa;
+  struct studentNode *next;
+  struct studentNode *back;
 };
 
 class LinkedList
 {
 protected:
-    struct studentNode *start, **now;
+  // struct studentNode *start, **now;
 
 public:
-    LinkedList();                                   // กำหนดค่าเริ่มต้นของ start และ now
-    ~LinkedList();                                  // คืนหน่วยความจำที่จองไว้ในลิงค์ลิสต์ทุกโหนด
-    void InsNode(char n[], int a, char s, float g); // แทรกโหนดใหม่อยู่ก่อนโหนดปัจจุบัน
-    void DelNode();                                 // ลบโหนดปัจจุบัน
-    GoNext();                                       // เปลี่ยนโหนดปัจจุบันไปชี้ที่โหนดถัดไป
-    virtual void ShowNode();                        // แสดงข้อมูลในโหนดปัจจุบัน
-};                                                  // end class
-
-class NewList : public LinkedList
-{
-public:
-    GoFirst();               // เปลี่ยนโหนดปัจจุบันไปชี้ที่โหนดเริ่มต้น
-    virtual void ShowNode(); // แสดงข้อมูลในทุกโหนดตั้งแต่เริ่มต้นถึงสุดท้าย
-};                           // end class
+  LinkedList(); // กำหนดค่าเริ่มต้นของ start และ now
+  // ~LinkedList(); // คืนหน่วยความจำที่จองไว้ในลิงค์ลิสต์ทุกโหนด
+  void InsNode(char n[], int a, char s, float g);
+  // void DelNode();
+  void ShowAll();
+  // void ShowBack();
+  void AddNode(char n[], int a, char s, float g);
+  struct studentNode *start, **now;
+}; // end class
 
 int main()
 {
-    LinkedList listA;
-    NewList listB;
-    LinkedList *listC;
+  LinkedList listA;
+  listA.AddNode("onee", 6, 'M', 3.11);
+  // listA.AddNode("two", 6, 'M', 3.11);
+  // listA.AddNode("three", 6, 'M', 3.11);
+  // printf("| %s |", listA.start->next->name);
+  // listA.InsNode("six", 5, 'A', 1.1);
+  // listA.AddNode("four", 6, 'M', 3.11);
 
-    listA.InsNode("one", 1, 'A', 1.1);
-    listA.InsNode("two", 2, 'B', 2.2);
-    listA.InsNode("three", 3, 'C', 3.3);
-    listA.GoNext();
-    listA.ShowNode();
+  // listA.InsNode("one", 1, 'A', 1.1);
+  listA.InsNode("two", 2, 'B', 2.2);
+  // listA.InsNode("three", 3, 'C', 3.3);
+  listA.ShowAll();
 
-    listB.InsertNode("four", 4, 'D', 4.4);
-    listB.InsertNode("five", 5, 'E', 5.5);
-    listB.InsertNode("six", 6, 'F', 6.6);
-    listB.GoNext();
-    listB.DelNode();
-    listB.ShowNode();
+  // listA.InsNode("two", 2, 'B', 2.2);
+  // listA.InsNode("three", 3, 'C', 3.3);
+  return 0;
+};
 
-    listC = &listA;
-    listC->GoNext();
-    listC->ShowNode();
+void LinkedList ::AddNode(char n[], int a, char s, float g)
+{
+  struct studentNode **walk;
+  walk = &(this->start);
 
-    listC = &listB;
-    listC->ShowNode();
+  struct studentNode *temp = NULL;
 
-    return 0;
+  while (*walk != NULL)
+  {
+    temp = *walk;
+    walk = &(*walk)->next;
+  } // end while
+
+  *walk = new struct studentNode;
+  strcpy((*walk)->name, n);
+  (*walk)->age = a;
+  (*walk)->sex = s;
+  (*walk)->gpa = g;
+
+  (*walk)->next = NULL;
+  (*walk)->back = temp;
+
 } // end function
 
-void LinkedList::InsNode( char n[], int a, char s, float g ) {
-  struct studentNode *temp = new studentNode ;
-  strcpy( temp->name, n ) ;
-  temp->age = a ;
-  temp->sex = s ;
-  temp->gpa = g ;
+void LinkedList ::InsNode(char n[], int a, char s, float g)
+{
+  struct studentNode **walk;
+  walk = &(this->start);
 
-  temp->next = *now ;
-  *now = temp ;
-}
+  if ((*walk)->back != NULL)
+  {
+    (*walk)->back->next = new struct studentNode;
 
-void LinkedList::DelNode() {
-  struct studentNode *temp = *now ;
-  *now = (*now)->next ;
-  delete temp ;
-}
+    strcpy((*walk)->back->next->name, n);
+    (*walk)->back->next->age = a;
+    (*walk)->back->next->sex = s;
+    (*walk)->back->next->gpa = g;
 
-void LinkedList::GoNext() {
-  now = &((*now)->next) ;
-}
-
-void LinkedList::ShowNode() {
-  cout << "Name : " << (*now)->name << endl ;
-  cout << "Age : " << (*now)->age << endl ;
-  cout << "Sex : " << (*now)->sex << endl ;
-  cout << "GPA : " << (*now)->gpa << endl ;
-}
-
-void NewList::GoFirst() {
-  now = &start ;
-}
-
-void NewList::ShowNode() {
-  GoFirst() ;
-  while ( *now != NULL ) {
-    cout << "Name : " << (*now)->name << endl ;
-    cout << "Age : " << (*now)->age << endl ;
-    cout << "Sex : " << (*now)->sex << endl ;
-    cout << "GPA : " << (*now)->gpa << endl ;
-    GoNext() ;
+    (*walk)->back->next->next = (*walk);
+    (*walk)->back->next->back = (*walk)->back;
+    (*walk)->back = (*walk)->back->next;
   }
+  else
+  {
+    struct studentNode *temp = NULL;
+    *walk = new struct studentNode;
+    strcpy((*walk)->name, n);
+    (*walk)->age = a;
+    (*walk)->sex = s;
+    (*walk)->gpa = g;
+    (*walk)->next = NULL;
+    (*walk)->back = temp;
+  }
+} // end function
+
+void LinkedList ::ShowAll()
+{
+  struct studentNode **walk;
+  walk = &(this->start);
+
+  while (*walk != NULL)
+  {
+    printf("%s ", (*walk)->name);
+    *walk = (*walk)->next;
+  }
+  printf("\n");
+
+} // end function
+
+LinkedList ::LinkedList()
+{
+  this->start = NULL;
 }
+
+// LinkedList ::~LinkedList()
+// {
+//   printf("BOOB");
+// }

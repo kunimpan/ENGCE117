@@ -62,6 +62,15 @@ void InsNode( struct studentNode *walk, char n[], int a, char s, float g ){
         walk->back->next->next = walk;
         walk->back->next->back = walk->back;
         walk->back = walk->back->next;
+    }else{
+        struct studentNode *temp = NULL;
+        walk = new struct studentNode;
+        strcpy(walk->name, n);
+        walk->age = a;
+        walk->sex = s;
+        walk->gpa = g;
+        walk->next = NULL;
+        walk->back = temp;
     }
 }
 
