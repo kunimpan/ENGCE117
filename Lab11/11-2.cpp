@@ -18,10 +18,10 @@ void mergesort( int t[], int k ) {
         int v[ k - m ] ;
         for( int i = 0 ; i < m ; i++ ){
             u[ i ] = t[ i ] ;
-        } 
+        } //end loop
         for( int i = 0 ; i < k - m ; i++ ){
             v[ i ] = t[ m + i ] ;
-        }
+        }//end loop
         mergesort( u, m ) ;
         mergesort( v, k - m ) ;
         merge( u, m, v, k - m, t ) ;
@@ -33,7 +33,11 @@ void merge( int *u, int m, int *v, int n, int *t ) {
     while( i < m && j < n ) {
         if( u[ i ] < v[ j ] ) t[ k++ ] = u[ i++ ] ;
         else t[ k++ ] = v[ j++ ] ;
-    }
-    while( i < m ) t[ k++ ] = u[ i++ ] ;
-    while( j < n ) t[ k++ ] = v[ j++ ] ;
+    }//end loop
+    while( i < m ) {
+        t[ k++ ] = u[ i++ ] ;
+    }//end loop
+    while( j < n ) {
+        t[ k++ ] = v[ j++ ] ;
+    }//end loop
 }//end function
