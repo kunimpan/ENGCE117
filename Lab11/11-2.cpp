@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 void mergesort( int t[], int k ) ;
 void merge( int *u, int m, int *v, int n, int *t ) ;
