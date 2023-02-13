@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 void mergesort( int t[], int k ) ;
 void merge( int *u, int m, int *v, int n, int *t ) ;
@@ -14,18 +13,12 @@ int main() {
 
 void mergesort( int t[], int k ) {
     if( k > 1 ) {
-        int m = k / 2;
-        int u[ m ] ;
-        int v[ k - m ] ;
-        for( int i = 0 ; i < m ; i++ ){
-            u[ i ] = t[ i ] ;
-        } 
-        for( int i = 0 ; i < k - m ; i++ ){
-            v[ i ] = t[ m + i ] ;
-        }
-        mergesort( u, m ) ;
-        mergesort( v, k - m ) ;
-        merge( u, m, v, k - m, t ) ;
+        int m = k/2;
+        int u[m-1] = t[m-1];
+        int v[m-1] = t[m-k-1];
+        mergesort( t, u ) ;
+        mergesort( t, v) ;
+        merge( u, v, t ) ;
     }
 }//end function
 
