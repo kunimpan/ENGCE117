@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 int *KnapsackGreedy(int *w, int *v, int n, int wx);
@@ -19,7 +18,7 @@ int *KnapsackGreedy(int *w, int *v, int n, int wx){
     int *x = new int;
     for(i = 0 ; i < n-1 ; i++){
         x[i] = 0;
-    }
+    } // end loop
     weight = 0;
 
     while( weight < wx && i != -1){
@@ -29,6 +28,6 @@ int *KnapsackGreedy(int *w, int *v, int n, int wx){
         }
         i--;
         
-    }
+    } // end loop
     return x;
-}
+} // end function
