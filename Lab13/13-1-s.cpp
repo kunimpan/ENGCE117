@@ -16,7 +16,8 @@ int main(){
 int *KnapsackDP(int *w, int *v, int n, int wx) {
     int i, j;
     int dp[n + 1][wx + 1];
-    int *x = (int*)malloc(sizeof(int) * n);
+    int *x = new int;
+    // int *x = (int*)malloc(sizeof(int) * n);
 
     for (i = 0; i <= n; i++) {
         for (j = 0; j <= wx; j++) {
@@ -30,8 +31,8 @@ int *KnapsackDP(int *w, int *v, int n, int wx) {
             else {
                 dp[i][j] = dp[i - 1][j];
             }
-        }
-    }
+        }// end loop
+    }// end loop
 
     i = n;
     j = wx;
@@ -41,11 +42,11 @@ int *KnapsackDP(int *w, int *v, int n, int wx) {
             j -= w[i - 1];
         }
         i--;
-    }
+    }// end loop
     while (i > 0) {
         x[i - 1] = 0;
         i--;
-    }
+    }// end loop
 
     return x;
-}
+}// end function
